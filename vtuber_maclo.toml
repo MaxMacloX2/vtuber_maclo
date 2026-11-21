@@ -1,0 +1,115 @@
+# Configuración de vtuber_maclo
+# Puedes editar este archivo en caliente y pulsar "Recargar config" en los controles.
+
+[window]
+title = "Vtuber Maclo"
+inner_size = [450.0, 500.0]
+transparent = true
+decorations = true
+
+[audio]
+# Umbral inicial de volumen RMS para detectar voz.
+default_threshold = 0.02
+# Rango permitido en el control deslizante de umbral.
+threshold_min = 0.001
+threshold_max = 0.2
+# Tiempo en milisegundos que se mantiene el estado de habla al bajar del umbral.
+hold_ms = 120
+
+[animation]
+# Límite máximo de delta de tiempo (segundos) para estabilidad física.
+max_dt = 0.05
+# Impulso vertical al empezar a hablar (negativo = hacia arriba).
+bounce_impulse_y = -18.0
+# Velocidad de retorno exponencial hacia el reposo.
+bounce_damping_speed = 13.5
+# Margen superior base del avatar en puntos lógicos.
+avatar_base_top_space = 30.0
+# Ancho máximo base del sprite del avatar.
+avatar_max_width = 350.0
+
+# Estados del avatar.
+# Si omites `png`, los estados integrados usan los sprites embebidos en el binario.
+# Puedes indicar rutas relativas a este archivo (por ejemplo `png = "assets/happy.png"`).
+
+[states.idle]
+display_name = "Reposo"
+# png = "assets/idle.png"
+
+[states.talk]
+display_name = "Hablando"
+# png = "assets/talk.png"
+
+[states.happy]
+display_name = "Feliz"
+# png = "assets/happy.png"
+# talk_png = "assets/happy_talk.png"
+
+[states.surprised]
+display_name = "Sorprendido"
+# png = "assets/surprised.png"
+# talk_png = "assets/surprised_talk.png"
+
+# Atajos de teclado y control externo configurables:
+# - device: "keyboard" (predeterminado) o "gamepad" (mando Xbox / PlayStation / genérico)
+# - scope (solo teclado): "global" (funciona sin foco) o "window" (solo con la ventana enfocada)
+# - mode: "toggle" (encendido/apagado) o "momentary" (mientras se mantiene pulsada)
+# - action: "toggle_controls", "expression", "clear_expression" o "reload_config"
+
+[[bindings]]
+key = "H"
+scope = "window"
+mode = "toggle"
+action = "toggle_controls"
+
+[[bindings]]
+key = "1"
+scope = "global"
+mode = "toggle"
+action = "expression"
+state = "happy"
+
+[[bindings]]
+key = "2"
+scope = "global"
+mode = "momentary"
+action = "expression"
+state = "surprised"
+
+[[bindings]]
+key = "Escape"
+scope = "window"
+mode = "toggle"
+action = "clear_expression"
+
+# Ejemplo de combo multi-tecla (solo en ventana enfocada):
+# [[bindings]]
+# combo = ["J", "K"]
+# scope = "window"
+# mode = "momentary"
+# action = "expression"
+# state = "surprised"
+
+# Ejemplos para mando externo (Xbox / gamepad):
+# [[bindings]]
+# device = "gamepad"
+# button = "A"
+# mode = "toggle"
+# action = "expression"
+# state = "happy"
+#
+# [[bindings]]
+# device = "gamepad"
+# combo = "LB+Y"
+# mode = "momentary"
+# action = "expression"
+# state = "surprised"
+#
+# [[bindings]]
+# device = "gamepad"
+# button = "LT"
+# threshold = 0.65
+# gamepad_index = 0
+# mode = "momentary"
+# action = "expression"
+# state = "happy"
